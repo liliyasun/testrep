@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Tasks";
+}
+
+<h2 data-bind="value: userName"></h2>
+<div class="row">
+    <div class="col-md-4">
+        <form data-bind="submit: addTask">
+            <h3>Create task</h3>
+            <div class="form-group">
+                <label>Name</label>
+                <input class="form-control" type="text" data-bind="value: newTask.name" />
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea rows="4" class="form-control" type="text" data-bind="value: newTask.description"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Complexity</label>
+                <select class="form-control" data-bind="options: typesComplexity, value: newTask.complexity"></select>
+            </div>
+            <div class="form-group">
+                <label>Developer</label>
+                <select class="form-control" data-bind="options:developers, value: newTask.applicationUserId"></select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-default">Create</button>
+            </div>
+        </form>
+  </div>
+      
+    
+    
+      <div class="col-xs-6" style="padding-top:75px">
+            <div class="panel panel-default" data-bind="foreach:{data:tasks, as: 'task'}">
+                <div class="panel-heading">
+                    <h2 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" data-bind="text: Name, attr: { href : '#collapse' + task.Id}">
+                        </a>
+                    </h2>
+                </div>
+                <div data-bind="attr: { id : 'collapse' + task.Id}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <span data-bind="text: Description"></span>
+                       @* <small><a href="#">Edit</a></small>*@
+                    </div>
+                </div>
+                @*<div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>*@
+            </div>
+        </div>
+
+    @*<!-- ko if:detail() -->
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Edit</h2>
+            </div>
+            <table class="table">
+                <tr><td>Name</td><td data-bind="text: detail().name"></td></tr>
+                <tr><td>Description</td><td data-bind="text: detail().description"></td></tr>
+                <tr><td>Complexity</td><td data-bind="text: detail().complexity"></td></tr>
+                <tr><td>Developer</td><td data-bind="text: detail().applicationUserId"></td></tr>
+                
+            </table>
+        </div>
+    </div>
+    <!-- /ko -->*@
+   
+ </div>
